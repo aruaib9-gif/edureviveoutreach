@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   EduREVIVE OUTREACH — brand tokens
+   Sampled from the official logo:
+     navy   #171B24   cream  #FFF9E3   orange #EF9A33
+   --------------------------------------------------------------- */
+:root {
+  --navy-950: #0c0f16;
+  --navy-900: #11151d;
+  --navy-800: #171b24;
+  --navy-700: #222835;
+  --navy-600: #2f3749;
+  --navy-500: #434e66;
+  --navy-400: #6b7794;
+  --navy-300: #9aa3bb;
+  --navy-200: #c9cfdd;
+  --navy-100: #e6e9f0;
+
+  --orange-600: #c87518;
+  --orange-500: #e08722;
+  --orange-400: #ef9a33;
+  --orange-300: #f4b365;
+  --orange-200: #f9d3a3;
+  --orange-100: #fdeedb;
+
+  --cream-50: #fffdf6;
+  --cream-100: #fff9e3;
+  --cream-200: #f7efd4;
+
+  --background: #ffffff;
+  --foreground: var(--navy-800);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-navy-600: var(--navy-600);
+  --color-navy-500: var(--navy-500);
+  --color-navy-400: var(--navy-400);
+  --color-navy-300: var(--navy-300);
+  --color-navy-200: var(--navy-200);
+  --color-navy-100: var(--navy-100);
+
+  --color-brand-600: var(--orange-600);
+  --color-brand-500: var(--orange-500);
+  --color-brand-400: var(--orange-400);
+  --color-brand-300: var(--orange-300);
+  --color-brand-200: var(--orange-200);
+  --color-brand-100: var(--orange-100);
+
+  --color-cream-50: var(--cream-50);
+  --color-cream-100: var(--cream-100);
+  --color-cream-200: var(--cream-200);
+
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-unbounded), var(--font-montserrat), ui-sans-serif, sans-serif;
+  --font-wordmark: var(--font-source-serif), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-unbounded), var(--font-montserrat), ui-sans-serif, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Faint blueprint grid used behind several sections, as on the reference site */
+.bp-grid {
+  background-image:
+    linear-gradient(to right, rgba(23, 27, 36, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 27, 36, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.bp-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 249, 227, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 249, 227, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.dashed-rule {
+  border: 1.5px dashed var(--navy-300);
+}
+
+/* Marquee for the partner logo strips */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-slow { animation-duration: 64s; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Scroll reveal -------------------------------------------------------------
+   Elements marked `data-reveal` start offset and faded; the ScrollReveal
+   observer adds `data-revealed` as each one enters the viewport.
+
+   The hidden state lives inside a motion-safe query and is cancelled outright
+   without JavaScript (see the <noscript> block in the root layout), so content
+   can never be left stranded invisible. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Direction is named for where the element travels FROM. */
+  [data-reveal="fade"] { transform: none; }
+  [data-reveal="left"] { transform: translateX(-30px); }
+  [data-reveal="right"] { transform: translateX(30px); }
+  [data-reveal="zoom"] { transform: scale(0.96); }
+
+  /* Stagger for items in a grid or list — small steps, capped, so the last
+     card in a long row is never left waiting on the reader. */
+  [data-reveal-delay="1"] { transition-delay: 60ms; }
+  [data-reveal-delay="2"] { transition-delay: 120ms; }
+  [data-reveal-delay="3"] { transition-delay: 180ms; }
+  [data-reveal-delay="4"] { transition-delay: 240ms; }
+  [data-reveal-delay="5"] { transition-delay: 300ms; }
+  [data-reveal-delay="6"] { transition-delay: 360ms; }
+
+  [data-revealed] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .rise { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+::selection {
+  background: var(--orange-400);
+  color: var(--navy-900);
+}
