@@ -78,6 +78,21 @@ export function Footer() {
             </p>
           ))}
 
+          <ul className="space-y-1 text-[13px] text-navy-200">
+            {site.phones.map((p) => (
+              <li key={p.tel}>
+                <a href={`tel:${p.tel}`} className="hover:text-brand-300">
+                  {p.display}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href={`mailto:${site.email}`} className="hover:text-brand-300">
+                {site.email}
+              </a>
+            </li>
+          </ul>
+
           <div className="flex gap-2 pt-1">
             <a
               href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`}

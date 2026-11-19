@@ -49,9 +49,20 @@ export default function ContactPage() {
                 </span>
                 <div>
                   <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-navy-400">
-                    Phone &amp; WhatsApp
+                    Phone
                   </p>
-                  <p className="text-[14px] font-medium text-navy-800">{site.phone}</p>
+                  <ul className="space-y-0.5">
+                    {site.phones.map((p) => (
+                      <li key={p.tel}>
+                        <a
+                          href={`tel:${p.tel}`}
+                          className="text-[14px] font-medium text-navy-800 hover:text-brand-600"
+                        >
+                          {p.display}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </li>
               {site.addresses.map((a) => (

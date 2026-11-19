@@ -11,12 +11,17 @@ export const site = {
     "Heralding transformation in the education sector and the society at large",
   description:
     "EduREVIVE OUTREACH is a student and youth ministry raising students for academic excellence through biblical principles — motivation, deliverance and mentoring across schools and campuses in Nigeria and beyond.",
-  email: "hello@edurevive.org",
-  phone: "+234 000 000 0000",
-  whatsapp: "+234 000 000 0000",
+  email: "edureviveoutreach@gmail.com",
+  /** `display` is how the number is printed; `tel` is the dialable form. */
+  phones: [
+    { display: "0803 977 1781", tel: "+2348039771781" },
+    { display: "0803 928 4317", tel: "+2348039284317" },
+    { display: "0901 111 2497", tel: "+2349011112497" },
+  ],
+  // Assumed to be the first line; change if WhatsApp is on another number.
+  whatsapp: "+2348039771781",
   addresses: [
-    "National Coordinating Office, Ikeja, Lagos State, Nigeria",
-    "Campus Ministry Desk, Garki, Abuja, Federal Capital Territory",
+    "9, Irepodun Street, off Morebise Way, Moshalashi Egan, Igando, Lagos",
   ],
   socials: [
     {
